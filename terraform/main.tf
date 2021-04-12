@@ -7,7 +7,7 @@ resource "null_resource" "clusterfront" {
     "trigger" = var.container_tags
   }
   provisioner "local-exec" {
-    working_dir = "../text-speech"
+    working_dir = "./text-speech"
     command     = "docker build -t ${var.container_image}:${var.container_tags} . && docker push ${var.container_image}:${var.container_tags}"
   }
 }
