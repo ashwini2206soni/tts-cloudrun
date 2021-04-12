@@ -44,7 +44,7 @@
               title: Validation Job 
               text: Validation started
           - task: perform-plan
-            file: infrastructure-code/ci/task_validate.yaml
+            file: infrastructure-code/ci/tasks/task_validate.yaml
             params: *parameters
             on_success: *notify_success
             on_failure: *notify_failure
@@ -59,7 +59,7 @@
               title: Deployment Job 
               text: Deployment Started
           - task: perform-apply
-            file: infrastructure-code/ci/task_deploy.yaml
+            file: infrastructure-code/ci/tasks/task_deploy.yaml
             params: *parameters
             on_success: *notify_success
             on_failure: *notify_failure

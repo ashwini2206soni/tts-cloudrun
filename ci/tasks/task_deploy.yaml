@@ -11,5 +11,5 @@
       dir: infrastructure-code
       path: /bin/sh
       args:
-        - ci/deploy.sh
+        - ci/tasks/deploy.sh
     

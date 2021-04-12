@@ -11,5 +11,5 @@
       dir: infrastructure-code
       path: /bin/sh
       args:
-        - ci/validate.sh
+        - ci/tasks/validate.sh
     
