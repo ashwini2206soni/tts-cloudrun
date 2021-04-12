@@ -1,0 +1,66 @@
+---
+    PARAMETERS: &parameters
+      TF_PROVIDER_GCP_CREDENTIALS: ((tf_provider_gcp_credentials))
+    
+    ON_SUCCESS: &notify_success
+      put: notify
+      params:
+        silent: true
+        text: Success
+    
+    ON_FAILURE: &notify_failure
+      put: notify
+      params:
+        silent: true
+        text: Failure
+    
+    resources:
+      - name: infrastructure-code
+        type: git
+        icon: github
+        source:
+          uri: ((git_repo_infra_https))
+      - name: notify
+        type: teams-notification
+        icon: teams
+        source:
+          url: ((teams_connector_url))
+    
+    resource_types:
+      - name: teams-notification
+        type: docker-image
+        source:
+          repository: navicore/teams-notification-resource
+          tag: latest
+    
+    jobs:
+      - name: code-validation
+        plan:
+          - get: infrastructure-code
+            trigger: true
+            version: every
+          - put: notify
+            params:
+              title: Validation Job 
+              text: Validation started
+          - task: perform-plan
+            file: infrastructure-code/ci/task_validate.yaml
+            params: *parameters
+            on_success: *notify_success
+            on_failure: *notify_failure
+      - name: deploy-infrastructure
+        plan:
+          - get: infrastructure-code
+            trigger: true
+            passed: 
+              - code-validation
+          - put: notify
+            params:
+              title: Deployment Job 
+              text: Deployment Started
+          - task: perform-apply
+            file: infrastructure-code/ci/task_deploy.yaml
+            params: *parameters
+            on_success: *notify_success
+            on_failure: *notify_failure
+    

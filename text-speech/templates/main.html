@@ -1,0 +1,99 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}
+    Text to Speech Application
+{% endblock %}
+
+{% block content %}
+
+    <style>
+        body {
+	background: linear-gradient(-90deg,#cc95c0,#dbd4b4,#7aa1d2);
+	background-size: 400% 400%;
+	animation: gradient 10s ease infinite;
+}
+html{
+    font-family: 'Times New Roman', Times, serif;
+}
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+        .label-txt {
+            font-size: 22px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .lang-label {
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            padding-right: 5px;
+        }
+
+        img {
+            padding: 0;
+            display: block;
+            margin: 0 auto;
+            max-height: 80%;
+            max-width: 80%;
+        }
+       #submit{
+            border-radius: 20px;
+            color: white;
+            background-color: black;
+        }
+        #text_field {
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 10px black;
+}
+#language_options 
+{
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 10px black;
+}
+#gender_options{
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 10px black;
+}
+    </style>
+
+    <div class="container" style="width: 80%; background-color: transparent; font-family: 'Verdana';">
+        <h1 style="text-align: center;">
+            <img src="https://img.icons8.com/color/96/000000/portable-speaker2.png"/>
+            <span style="color: black;">Audifying App </span>  <br /> <br />
+            <span style="color: black;">Cloud Run</span> <span style="color: #f4b400;"> & </span> 
+            <span style="color: black;">Text to Speech <br /></span>
+            </span>
+        </h1>
+
+        <div class="row">
+            <div class="col-md-16">
+                <form action="" method="post" novalidate>
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        <br><br>
+                        {{ form.text_field.label(class_='label-txt') }}<br>
+                        {{ form.text_field(rows=10, cols=180, class_='form-control') }}<br>
+                        {{ form.language_options.label(class_='lang-label') }} {{ form.language_options(formnovalidate=True) }}<br> <br>
+                        {{ form.gender_options.label(class_='lang-label') }} &nbsp;&nbsp;&nbsp;{{ form.gender_options(formnovalidate=True) }}
+                    </div>
+                    {{ form.submit(class_='btn') }}
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
