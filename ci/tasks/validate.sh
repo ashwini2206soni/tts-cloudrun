@@ -2,7 +2,7 @@
 
 set -e
 
-echo "${TF_PROVIDER_GCP_CREDENTIALS}" > credentials.json
+echo ${TF_PROVIDER_GCP_CREDENTIALS} > credentials.json
 
 echo "==> Init <=="
 terraform init \
