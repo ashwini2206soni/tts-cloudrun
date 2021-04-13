@@ -8,7 +8,7 @@ resource "null_resource" "clusterfront" {
   }
   provisioner "local-exec" {
     working_dir = "./text-speech"
-    command     = "gcloud builds submit --tag ${var.container_image}:${var.container_tags}"
+    command     = "gcloud auth activate-service-account ashwini-consulting-sa@ashwini-consulting.iam.gserviceaccount.com --key-file=credentials.json --project='ashwini-consulting' && gcloud builds submit --tag ${var.container_image}:${var.container_tags}"
   }
 }
 
