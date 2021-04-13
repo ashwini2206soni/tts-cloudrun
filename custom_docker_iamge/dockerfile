@@ -1,0 +1,16 @@
+FROM ubuntu:20.04
+#Set non-interactive so that no need to intearct during installation and time zone is set to work properly with date time. To avoid intearction between installation when asked for time zone  
+ENV DEBIAN_FRONTEND="noninteractive" TZ="America/Toronto"
+#download https package, ca certifications whitelisted by Ubuntu, curl, gnupg, lsb-release to know current version of operating system, docker io to install docker, software properties to download packeges from 3rd part that is hashicorp 
+RUN apt-get update && apt-get install apt-transport-https ca-certificates curl gnupg lsb-release docker.io software-properties-common -y
+#Taking key from hashicorp and inserting into the system
+RUN curl -fsSL https://apt.releases.hashicorp.com/gpg |  apt-key add -
+#add apt repository of hashicorp into default repo of ubuntu
+RUN apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+#install terraform
+RUN  apt-get update &&  apt-get install terraform -y
+#entry point
+CMD ["/bin/bash"]
+
+#docker build -t docker-hub-username/iamge-name .
+#docker push docker-hub-username/iamge-name 

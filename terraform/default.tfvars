@@ -1,10 +1,10 @@
-project = "tts-cloudrun"
+project = "ashwini-consulting"
 
 region = "us-central1"
 
-container_image = "gcr.io/tts-cloudrun/front"
+container_image = "gcr.io/ashwini-consulting/front"
 
-container_tags = "v1.0.8"
+container_tags = "v1"
 
 container_port = 8080
 

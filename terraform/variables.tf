@@ -1,5 +1,5 @@
 variable "project" {
-  default     = "tts-cloudrun"
+  default     = "ashwini-consulting"
   type        = string
   description = "The ID of the project where terraform resources are build"
 }
@@ -11,7 +11,7 @@ variable "location" {
 }
 
 variable "container_image" {
-  default     = "gcr.io/tts-cloudrun/front"
+  default     = "gcr.io/ashwini-consulting/front"
   type        = string
   description = "Image of a container"
 }

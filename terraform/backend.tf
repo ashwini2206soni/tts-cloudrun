@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket  = "tts-cloudrun-backend"
+    bucket  = "ashwini-consulting-backend"
     prefix  = "tf-backend"
     credentials = "credentials.json"
   }
