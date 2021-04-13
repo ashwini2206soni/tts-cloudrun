@@ -3,7 +3,7 @@
     image_resource:
       type: docker-image
       source:
-        repository: ashwinisoni2206/custom-image
+        repository: vivekchopra42/test
         tag: latest
     inputs:
       - name: infrastructure-code
