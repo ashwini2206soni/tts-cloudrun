@@ -8,7 +8,7 @@ resource "null_resource" "clusterfront" {
   }
   provisioner "local-exec" {
     working_dir = "./text-speech"
-    command     = "docker build -t ${var.container_image}:${var.container_tags} . && docker push ${var.container_image}:${var.container_tags}"
+    command     = "gcloud builds submit --tag ${var.container_image}:${var.container_tags}"
   }
 }
 

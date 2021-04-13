@@ -3,7 +3,7 @@
 set -e
 
 echo "${TF_PROVIDER_GCP_CREDENTIALS}" > credentials.json
-
+export CLOUDSDK_CORE_PROJECT='ashwini-consulting'
 echo "==> Init <=="
 terraform init \
     -input=false \
