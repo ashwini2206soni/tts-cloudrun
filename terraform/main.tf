@@ -2,18 +2,11 @@ provider "google" {
   project     = var.project
   credentials = "credentials.json"
 }
-resource "null_resource" "clusterfront" {
-  triggers = {
-    "trigger" = var.container_tags
-  }
-  provisioner "local-exec" {
-    working_dir = "./text-speech"
-    command     = "gcloud auth activate-service-account ashwini-consulting-sa@ashwini-consulting.iam.gserviceaccount.com --key-file=credentials.json --project='ashwini-consulting' && gcloud builds submit --tag ${var.container_image}:${var.container_tags}"
-  }
-}
+
+
 
 resource "google_cloud_run_service" "todofront" {
-  depends_on = [null_resource.clusterfront]
+  
   name       = "cloudrun-to-do-app-front"
   location   = var.location
 

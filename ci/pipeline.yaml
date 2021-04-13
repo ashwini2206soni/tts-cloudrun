@@ -48,12 +48,27 @@
             params: *parameters
             on_success: *notify_success
             on_failure: *notify_failure
-      - name: deploy-infrastructure
+      - name: build-image
         plan:
           - get: infrastructure-code
             trigger: true
             passed: 
               - code-validation
+          - put: notify
+            params:
+              title: Deployment Job 
+              text: Deployment Started
+          - task: perform-apply
+            file: infrastructure-code/ci/tasks/task_build.yaml
+            params: *parameters
+            on_success: *notify_success
+            on_failure: *notify_failure
+      - name: deploy-infrastructure
+        plan:
+          - get: infrastructure-code
+            trigger: true
+            passed: 
+              - build-image
           - put: notify
             params:
               title: Deployment Job 

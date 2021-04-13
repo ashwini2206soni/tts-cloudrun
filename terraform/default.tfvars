@@ -4,7 +4,7 @@ region = "us-central1"
 
 container_image = "gcr.io/ashwini-consulting/front"
 
-container_tags = "v1"
+container_tags = "v2"
 
 container_port = 8080
 
