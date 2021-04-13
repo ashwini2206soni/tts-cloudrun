@@ -59,7 +59,6 @@
               title: Deployment Job 
               text: Deployment Started
           - task: perform-apply
-            privileged: true
             file: infrastructure-code/ci/tasks/task_deploy.yaml
             params: *parameters
             on_success: *notify_success

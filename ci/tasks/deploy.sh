@@ -3,6 +3,7 @@
 set -e
 
 echo "${TF_PROVIDER_GCP_CREDENTIALS}" > credentials.json
+gcloud auth activate-service-account ashwini-consulting-sa@ashwini-consulting.iam.gserviceaccount.com --key-file=credentials.json --project='ashwini-consulting'
 export CLOUDSDK_CORE_PROJECT='ashwini-consulting'
 export GOOGLE_APPLICATION_CREDENTIALS='credentials.json'
 echo "==> Init <=="
