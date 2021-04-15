@@ -3,7 +3,7 @@
     image_resource:
       type: docker-image
       source:
-        repository: vivekchopra42/test
+        repository: google/cloud-sdk
         tag: latest
     inputs:
       - name: infrastructure-code

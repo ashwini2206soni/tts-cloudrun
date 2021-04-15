@@ -6,13 +6,15 @@
       put: notify
       params:
         silent: true
+        title: TTS-CLOUDRUN
         text: Success
     
     ON_FAILURE: &notify_failure
       put: notify
       params:
-        silent: true
+        title: TTS-CLOUDRUN
         text: Failure
+        color: FF2D00
     
     resources:
       - name: infrastructure-code
@@ -22,7 +24,7 @@
           uri: ((git_repo_infra_https))
       - name: notify
         type: teams-notification
-        icon: teams
+        icon: ms-teams
         source:
           url: ((teams_connector_url))
     
@@ -43,6 +45,7 @@
             params:
               title: Validation Job 
               text: Validation started
+              actionTarget: $ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
           - task: perform-plan
             file: infrastructure-code/ci/tasks/task_validate.yaml
             params: *parameters
@@ -56,8 +59,8 @@
               - code-validation
           - put: notify
             params:
-              title: Deployment Job 
-              text: Deployment Started
+              title: Build Job 
+              text: Build Job Started
           - task: perform-apply
             file: infrastructure-code/ci/tasks/task_build.yaml
             params: *parameters

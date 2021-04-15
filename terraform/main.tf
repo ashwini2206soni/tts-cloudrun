@@ -2,9 +2,6 @@ provider "google" {
   project     = var.project
   credentials = "credentials.json"
 }
-
-
-
 resource "google_cloud_run_service" "todofront" {
   
   name       = "cloudrun-to-do-app-front"
