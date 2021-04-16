@@ -8,9 +8,7 @@ terraform init \
     -input=false \
     -no-color \
     ./terraform
-
-
-
+    
 echo "==> Plan <=="
 terraform plan \
     -out=main.tfplan \

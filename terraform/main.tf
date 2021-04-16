@@ -1,7 +1,3 @@
-provider "google" {
-  project     = var.project
-  credentials = "credentials.json"
-}
 resource "google_cloud_run_service" "todofront" {
   
   name       = "cloudrun-to-do-app-front"
@@ -42,21 +38,3 @@ resource "google_cloud_run_service_iam_policy" "frontpolicy" {
   service     = google_cloud_run_service.todofront.name
   policy_data = data.google_iam_policy.noauthfront.policy_data
 }
-
-# resource "google_cloud_run_domain_mapping" "default" {
-#   location = "us-central1"
-#   name     = "audify.ashwini.consulting"
-
-#   metadata {
-#     namespace = "tts-cloudrun"
-#   }
-
-#   spec {
-#     route_name = google_cloud_run_service.todofront.name
-#   }
-# }
-
-
-# output "url" {
-#   value = "${google_cloud_run_service.todofront.status[0].url}"
-# }
